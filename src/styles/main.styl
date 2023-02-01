@@ -48,6 +48,7 @@ $white = #fff
 $black = #000
 $gray = #6f767e
 $light-gray = #d9d9d9
+$darkest-blue = #295da2
 $darker-blue = #3474ca
 $blue = #3e8bf3
 $light-blue = #c0e1ee
@@ -56,6 +57,10 @@ $light-green = #d0e5c2
 $light-violet = #dfd3f7
 $blue-bg = #f5f9fe
 $blue-bg-dark = #e3eefd
+
+tr(){
+	transition all 0.3s ease-in-out
+}
 
 html
 	box-sizing border-box
@@ -113,13 +118,18 @@ body
 
 .btn
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 32px;
     color $white
     background-color $blue
-    padding 12px 16px
+    padding 12px 24px
     border-radius 8px
-
+    tr()
+    &:hover
+        background-color: $darker-blue
+    &:active
+        background-color: $darkest-blue
+        
 a
     text-decoration none
     color inherit
@@ -159,6 +169,11 @@ img
         padding-right 24px
         border-right 1px solid $light-gray
         margin-right 24px
+    &__btn
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        padding 12px 16px
 
 .nav
     display flex
@@ -167,18 +182,38 @@ img
         display flex
     &__item:not(:last-child)
         margin-right 40px
+    &__link
+        padding-bottom 30px
+        border-bottom 2px solid transparent
+        tr()
+        &:hover
+            color $blue
+            border-color $blue
         
 .lang
     display flex
     align-items center
     margin-right 24px
+    &:hover
+        & .lang__value
+            color $blue
+        & .lang__arrow
+            stroke $blue
     &__icon
         width 20px
         height 20px
         margin-right 8px
+    &__value
+        tr()
     &__arrow
         width 24px
         height 24px
+        stroke $gray
+        transition: stroke .3s ease-in-out
+        tr()
+    &__arrow--active
+        transform rotate(180deg)
+            
 
 // Hero
 .hero
@@ -186,22 +221,26 @@ img
     &__container
         background-image url('../img/hero-bg.png')
         background-repeat no-repeat
-        background-position right 108px top 61px
+        background-position right 108px top 75px
         background-size 600px 626px
-        padding 24px 24px
+        padding 24px 24px 20px
     &__content
         padding-top 162px
-        padding-left 108px
+        padding-left 84px
         margin-bottom 194px
     &__title
-        max-width 44%
+        max-width 41%
         font-weight: 500;
         font-size: 64px;
         line-height: 72px;
         margin 0
-        margin-bottom 32px
+        margin-bottom 33px
     &__btn
-        margin-bottom 32px
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 32px;
+        padding 16px 24px
+        margin-bottom 31px
     &__descr
         display flex
         align-items center
@@ -241,6 +280,20 @@ img
     &__icon
         width 40px
         height 40px
+        color $blue
+        tr()
+        use
+            fill $white
+            tr()
+        &:hover
+            color $white
+            use
+                fill $blue
+        &:active
+            color $white
+            use
+                fill $darkest-blue
+                
 
 // About
 .about
@@ -249,7 +302,7 @@ img
         justify-content space-between
     &__title
         width 50%
-        margin-right 174px
+        margin-right 202px
     &__descr
         width 47%
         font-weight: 500;
@@ -296,3 +349,158 @@ img
         color $black
         margin 0
         margin-bottom 24px
+
+// Geo
+.geo
+    &__title
+        max-width 37%
+        margin-bottom 32px
+    &__btn-launch
+        margin-right 11px
+    &__btn-connect
+        color $gray
+        background-color $blue-bg
+        tr()
+        &:hover
+            color $black
+            background-color $blue-bg-dark
+        &:active
+            color $black
+            background-color #bfd8fb
+
+.countries
+    max-width 13%
+    padding 8px
+    background-color $blue-bg
+    border-radius 16px
+    margin-bottom 64px
+    &__item
+        width 100%
+        display flex
+        align-items center
+        padding 8px 16px
+        &:not(:last-child)
+            margin-bottom 8px
+    &__item--active
+        background-color $white
+        border-radius 8px
+    &__icon
+        width 20px
+        height 20px
+        margin-right 8px
+
+// FAQ
+.faq
+    padding-bottom 195px
+    &__content
+        display flex
+        justify-content space-between
+    &__left
+        width 32%
+    &__right
+        width 66%
+    &__title
+        margin-bottom 32px
+    &__descr
+        max-width 55%
+
+.accordion
+    border-bottom 1px solid $light-gray
+    &__item
+        border-top 1px solid $light-gray
+    &__head
+        display flex
+        justify-content: space-between
+        padding 24px
+        tr()
+        &:hover
+            background-color: $blue-bg
+    &__title
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 31px;
+        margin 0
+    &__icon
+        position relative
+        width 24px
+        height 24px
+    &__line
+        display inline-block
+        position absolute
+        height 2px
+        width 14px
+        top 59%
+        left 22%
+        background-color $gray
+        border-radius 50%
+        tr()
+        &:last-child
+            transform: rotate(90deg)
+    &__content 
+        padding 24px
+        padding-top 0
+        & p
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color $gray
+            margin 0
+    
+    // jQuery Accordion Styles - Enabled
+.ui-accordion
+    &-header-icon
+        display none
+
+.ui-state-active .accordion__line:last-child
+    transform: rotate(0deg)
+
+// App
+.app
+    position relative
+    background-color $blue-bg
+    padding 96px 0
+    &__content
+        width 45%
+    &__title
+    &__descr
+        margin-bottom 32px
+    &__descr
+        width 81%
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+    &__bg
+        position absolute
+        width 100%
+        height 115%
+        top -78px
+        right 214px
+        bottom 0
+        background-image url(../img/app-bg.png)
+        background-repeat no-repeat
+        background-position right bottom
+
+// Footer
+.footer
+    padding 64px 0
+    &__container
+        display flex
+        justify-content space-between
+        align-items center
+    &__left
+        margin-right 436px
+    &__center
+        display flex
+        margin-right 212px
+    &__link
+        tr()
+        &:hover
+            color $blue
+    &__terms
+        margin-right 32px
+    &__right
+        display flex
+        align-items center
+    &-social__descr
+        margin-right 24px
+

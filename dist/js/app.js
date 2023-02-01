@@ -1,1 +1,1 @@
-"use strict";
+"use strict";$((function(){$("#accordion").accordion({collapsible:!0,heightStyle:"content"})}));
