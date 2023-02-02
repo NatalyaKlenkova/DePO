@@ -106,6 +106,16 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                         span.lang__value Русский
                         svg.lang__arrow
                             use(xlink:href='#Caret_Down')
+                        .lang__options.lang-options
+                          ul.lang-options__list.list-reset
+                            li.lang-options__item
+                              svg.lang__icon 
+                                use(xlink:href='#ru')
+                              span.lang__value Русский
+                            li.lang-options__item.lang-options__item--active
+                              svg.lang__icon 
+                                use(xlink:href='#ua')
+                              span.lang__value English
                     button.header__btn.btn.btn-reset Launch app
         main.main 
             section.hero 
@@ -151,15 +161,16 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                     h3.stages-item__title= stage.title
                                     p.stages-item__descr.descr= stage.descr
             section.geo#geo.section-offset.section-divider
-                -var countryItems = [{iconKey: '#ru', name: 'Россия'}, {iconKey: '#ua', name: 'Украина'}, {iconKey: '#tr', name: 'Турция'}, {iconKey: '#kz', name: 'Казахстан'}, {iconKey: '#by', name: 'Беларусь'}]
+                -var countriesItems = [{path: 'ru', iconKey: '#ru', name: 'Россия'}, {path: 'ua', iconKey: '#ua', name: 'Украина'}, {path: 'tr', iconKey: '#tr', name: 'Турция'}, {path: 'kz', iconKey: '#kz', name: 'Казахстан'}, {path: 'by', iconKey: '#by', name: 'Беларусь'}]
                 .container.geo__container 
+                    .geo__bg 
                     .geo__countries.countries
                         ul.countries__list.list-reset 
-                         for countryItem of countryItems 
-                            li.countries__item.countries__item--active 
+                        for countriesItem of countriesItems 
+                            li.countries__item(data-path= countriesItem.path)
                                 svg.countries__icon 
-                                    use(xlink:href=countryItem.iconKey)
-                                span.countries__name.descr= countryItem.name
+                                    use(xlink:href=countriesItem.iconKey)
+                                span.countries__name.descr= countriesItem.name
                     h2.geo__title.title Страны, с&nbsp;которыми уже работает сервис
                     .geo__btns 
                         button.geo__btn.geo__btn-launch.btn.btn-reset Launch app

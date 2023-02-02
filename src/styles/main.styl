@@ -185,12 +185,14 @@ img
     &__link
         padding-bottom 30px
         border-bottom 2px solid transparent
-        tr()
         &:hover
             color $blue
             border-color $blue
+        tr()
+        
         
 .lang
+    position relative
     display flex
     align-items center
     margin-right 24px
@@ -213,6 +215,24 @@ img
         tr()
     &__arrow--active
         transform rotate(180deg)
+
+.lang-options
+    position absolute
+    top 60px
+    left -18px
+    background-color: $white
+    border-radius 16px 
+    padding 8px
+    &__item
+        display flex
+        color $gray
+        padding 8px 16px
+        &:not(:last-child)
+            margin-bottom 8px
+        &--active
+            color $black
+            background-color $blue-bg
+            border-radius 8px
             
 
 // Hero
@@ -281,18 +301,17 @@ img
         width 40px
         height 40px
         color $blue
-        tr()
         use
             fill $white
             tr()
         &:hover
-            color $white
             use
                 fill $blue
+            color $white    
         &:active
-            color $white
             use
                 fill $darkest-blue
+            color $white
                 
 
 // About
@@ -352,6 +371,17 @@ img
 
 // Geo
 .geo
+    position relative
+    &__bg
+        position absolute
+        z-index -1
+        width 100%
+        height 100%
+        top 0
+        right 107px
+        background-image: url('../img/map_ru.png')
+        background-repeat no-repeat
+        background-position: right center
     &__title
         max-width 37%
         margin-bottom 32px
@@ -379,8 +409,12 @@ img
         display flex
         align-items center
         padding 8px 16px
+        cursor pointer
         &:not(:last-child)
             margin-bottom 8px
+        &:hover
+            background-color $white
+            border-radius 8px
     &__item--active
         background-color $white
         border-radius 8px
@@ -460,6 +494,7 @@ img
     background-color $blue-bg
     padding 96px 0
     &__content
+        z-index 1
         width 45%
     &__title
     &__descr
