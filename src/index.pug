@@ -90,7 +90,7 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
 
         header.header 
             - var navItems = [{title: 'О нас', id: '#about'}, {title: 'Как это работает', id: '#stages'}, {title: 'Где работаем', id: '#geo'}, {title: 'FAQ', id: '#faq'}, {title: 'Контакты', id: '#contacts'}]
-            .container.header__container 
+            .header__container 
                 .header__left
                     a.header__logo(href="#") 
                         img(src="./img/logo.svg", alt="Логотип DePO")
@@ -101,26 +101,31 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                     a.nav__link(href=navItem.id)= navItem.title
                 .header__right 
                     .header__lang.lang
-                        svg.lang__icon 
-                            use(xlink:href='#ru')
-                        span.lang__value Русский
-                        svg.lang__arrow
-                            use(xlink:href='#Caret_Down')
+                        .lang__selected
+                          svg.lang__icon 
+                              use(xlink:href='#ru')
+                          span.lang__value Русский
+                          svg.lang__arrow
+                              use(xlink:href='#Caret_Down')
                         .lang__options.lang-options
                           ul.lang-options__list.list-reset
                             li.lang-options__item
-                              svg.lang__icon 
+                              svg.lang-options__icon 
                                 use(xlink:href='#ru')
-                              span.lang__value Русский
+                              span.lang-options__value Русский
                             li.lang-options__item.lang-options__item--active
-                              svg.lang__icon 
+                              svg.lang-options__icon 
                                 use(xlink:href='#ua')
-                              span.lang__value English
+                              span.lang-options__value English
                     button.header__btn.btn.btn-reset Launch app
+                    .header__burger.burger
+                      span.burger__line 
+                      span.burger__line 
+                      span.burger__line 
         main.main 
             section.hero 
                 - var socialLinks = [{link: '#', iconKey: '#fb'}, {link: '#', iconKey: '#tw'}, {link: '#', iconKey: '#insta'}]
-                .container.hero__container
+                  .hero__container
                     .hero__content
                         h1.hero__title Обменивай крипту и&nbsp;фиат без ограничений
                         button.hero__btn.btn.btn-reset Launch app
@@ -160,21 +165,23 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                     span.stages-item__number.descr(class=stage.class)= stage.number 
                                     h3.stages-item__title= stage.title
                                     p.stages-item__descr.descr= stage.descr
+                        button.stages__btn.stages__bottom-btn.btn.btn-reset Начать обмен
             section.geo#geo.section-offset.section-divider
                 -var countriesItems = [{path: 'ru', iconKey: '#ru', name: 'Россия'}, {path: 'ua', iconKey: '#ua', name: 'Украина'}, {path: 'tr', iconKey: '#tr', name: 'Турция'}, {path: 'kz', iconKey: '#kz', name: 'Казахстан'}, {path: 'by', iconKey: '#by', name: 'Беларусь'}]
                 .container.geo__container 
                     .geo__bg 
                     .geo__countries.countries
                         ul.countries__list.list-reset 
-                        for countriesItem of countriesItems 
-                            li.countries__item(data-path= countriesItem.path)
-                                svg.countries__icon 
-                                    use(xlink:href=countriesItem.iconKey)
-                                span.countries__name.descr= countriesItem.name
-                    h2.geo__title.title Страны, с&nbsp;которыми уже работает сервис
-                    .geo__btns 
-                        button.geo__btn.geo__btn-launch.btn.btn-reset Launch app
-                        button.geo__btn.geo__btn-connect.btn.btn-reset Подключить мою страну
+                          for countriesItem of countriesItems 
+                              li.countries__item(data-path= countriesItem.path)
+                                  svg.countries__icon 
+                                      use(xlink:href=countriesItem.iconKey)
+                                  span.countries__name.descr= countriesItem.name
+                    .geo__wrapper
+                      h2.geo__title.title Страны, с&nbsp;которыми уже работает сервис
+                      .geo__btns 
+                          button.geo__btn.geo__btn-launch.btn.btn-reset Launch app
+                          button.geo__btn.geo__btn-connect.btn.btn-reset Подключить мою страну
             
             section.faq#faq.section-offset 
                 - var accordionItems = [{question: 'How does staking work?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'Which Proof of Stake asset(s) earn staking rewards?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'Who is eligible to stake on DEPO?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'How does ETH staking work?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'What are the risks associated with staking?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'How do I earn DeFi yield on DEPO?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'What’s the difference between staking and DeFi yield?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}]
@@ -219,7 +226,7 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                         for socialLink of socialLinks 
                             li.social__item 
                                 a.social__link(href=socialLink.link) 
-                                    svg.social__icon 
+                                    svg.footer-social__icon.social__icon 
                                         use(xlink:href=socialLink.iconKey)
 
         

@@ -1,0 +1,325 @@
+@import ('main.styl')
+
+@media (max-width 992px)
+    .container
+        padding 0 24px
+    
+    .section-offset
+        padding 80px 0
+
+    .header
+        &__left
+            margin-right 24px
+        &__logo
+            border-right: none  
+            padding 0 
+            margin-right 0
+        &__btn
+            margin-right 24px  
+        &__nav
+            display none
+        &__burger
+            display block
+
+    .hero
+        &__container
+            background-image: url(../img/hero-bg-m.png);
+            background-position: right 138px top 32px;
+            background-size: 452px 472px;
+        &__content
+            display flex
+            flex-direction: column
+            align-items: center
+            padding-top 512px
+            padding-left 4px
+            margin-bottom 47px
+        &__title
+            max-width 95%
+            text-align center
+            font-weight: 500;
+            font-size: 48px;
+            line-height: 56px;
+    
+    .about
+        padding-top 81px
+        padding-bottom 81px
+        &__content
+            flex-direction: column
+        &__title
+            width 74%
+            margin-right 0
+            margin-bottom 32px
+        &__descr
+            width 74%
+
+    .stages
+        position relative
+        padding-bottom 64px
+        &__top
+            position absolute
+            width 45%
+            flex-direction: column
+            justify-content: flex-start
+            margin 0
+        &__title
+            width 56%
+            margin-bottom 31px
+        &__list
+            justify-content: space-between
+            flex-wrap: wrap
+        &__item
+            width 48%
+            &:first-child
+                margin-bottom 63px
+                margin-right 0
+                margin-left 52%
+    
+    .geo
+        &__container
+            display flex
+            flex-direction column-reverse
+        &__wrapper
+            margin-bottom 471px
+        &__title
+            max-width 74%
+        &__bg
+            top 92px
+            right 23px
+            background-size 680px 383px
+
+    .countries
+        max-width 100%
+        margin-bottom 0
+        &__list
+            display flex
+            flex-wrap: nowrap
+        &__item
+            max-width 20%
+            &:not(:last-child)
+                margin-bottom 0
+                margin-right 8px
+    
+    .faq
+        &__content
+            flex-direction: column
+        &__left
+            width 100%
+            display flex
+            justify-content: space-between
+            margin-bottom 32px
+        &__descr
+            max-width 35%
+        &__right
+            width 100%
+    
+    .accordion
+        &__title
+            max-width 86%
+    
+    .app
+        padding-top 81px
+        padding-bottom 592px
+        &__content
+            width 100%
+            display flex
+            flex-direction: column
+            align-items: center
+        &__title
+            text-align: center
+        &__descr
+            width 74%
+            text-align: center
+        &__bg
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-image: url(../img/app-bg-m.png);
+            background-position: center bottom;
+            background-size 456px 528px
+    
+    .footer
+        padding 31px 0
+        &__left
+            margin-right 24px
+        &__center
+            margin-right 79px
+
+@media (max-width 576px)
+    .container
+        padding 0 16px
+
+    .section-offset
+        padding 32px 0
+
+    .btn
+        font-size: 16px;
+        line-height: 24px;
+    
+    .title
+        font-size: 24px;
+        line-height: 32px;
+    
+    .descr
+        font-size: 14px;
+        line-height: 20px;
+
+    .header
+        &__container
+            padding 16px 17px
+        &__left
+            margin-right 0
+        &__logo img
+            width 74%
+        &__lang
+            display none
+        &__btn
+            font-size 14px
+            line-height 20px
+            padding 8px 12px
+            margin-right 16px
+    
+    .burger
+        width 24px
+        height 24px
+        &__line
+            width 19px
+            top 47%
+
+    .hero
+        &__container
+            background-image: url(../img/hero-bg-s.png);
+            background-position: center bottom 32px;
+            background-size: 100% 61%;
+            padding-bottom 60px
+        &__content
+            padding-top 8px
+            padding-left 0
+            padding-bottom 500px
+        &__title
+            max-width 100%
+            font-size: 32px;
+            line-height: 40px;
+            margin-bottom 24px
+        &__btn
+            padding 12px 24px
+            margin-bottom 22px
+        &-descr__icon
+            width 21px
+            height 21px
+        &__bottom
+            display none
+    
+    .about
+        &__title
+            width 100%
+            margin-bottom 15px
+        &__descr
+            width 100%
+            font-size: 14px;
+            line-height: 24px;
+
+    .stages
+        &__top
+            position static
+            width 100%
+            margin-bottom 26px
+        &__title
+            width 100%
+            margin 0
+        &__btn
+            display none
+        &__list
+            margin-bottom 49px
+        &__bottom-btn
+            display block
+
+    .stages-item
+        width 100%
+        &:first-child
+            margin-left 0
+        &:not(:last-child)
+            margin-right 0
+            margin-bottom 32px  
+        &__number
+            margin-bottom 15px
+        &__title
+            font-size: 20px;
+            line-height: 32px;
+            margin-bottom 16px
+
+    .geo
+        padding-bottom 35px
+        overflow: hidden
+        &__wrapper
+            margin-bottom 231px
+        &__title
+            max-width 100%
+            margin-bottom 24px
+        &__btn
+            width 100% 
+            &-launch
+                margin-right 0
+                margin-bottom 16px
+        &__bg
+            top 73px
+            right 16px
+            background-size 90% 30%
+
+    .faq
+        &__left
+            flex-direction: column
+            margin-bottom 24px
+        &__title
+            margin-bottom 16px
+        &__descr
+            max-width 64%
+    
+    .accordion
+        &__head
+            padding 15px 7px
+        &__title
+            font-size: 16px;
+            line-height: 24px;
+        &__content
+            padding 9px 8px 41px 8px
+        &__content p
+            font-size: 14px;
+            line-height: 20px;
+
+    .app
+        padding-top 33px
+        padding-bottom 365px
+        &__title
+            margin-bottom 16px
+        &__descr
+            width 100%
+            margin-bottom 15px
+        &__bg
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-image: url(../img/app-bg-s.png);
+            background-position: center bottom;
+            background-size: 288px 333px;
+
+    .footer
+        &__container
+            flex-direction column
+            align-items: center
+        &__left
+            margin-right 0
+            margin-bottom 24px
+        &__center
+            margin-right 0
+            margin-bottom 32px
+        &__right
+            flex-direction: column
+            justify-content: center
+        &-social__descr
+            margin-right 0
+            margin-bottom 15px
+
+    .social__item
+        &:not(:last-child)
+            margin-right 32px
