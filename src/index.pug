@@ -39,6 +39,25 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
     defs
       clippath#ea
         path( transform='translate(12 12)' d='M0 0h16v16H0z')
+  svg#done(fill='none' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg')
+    g(filter='url(#ea)')
+    rect(x='16' y='8' width='88' height='88' rx='44' fill='#fff')
+    path(d='M60 67c8.284 0 15-6.716 15-15 0-8.284-6.716-15-15-15-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15Z' stroke='#6FD6BD' stroke-width='3.333' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round')
+    path(d='m65 48.667-6.667 6.666L55 52' stroke='#6FD6BD' stroke-width='3.333' stroke-linecap='round' stroke-linejoin='round')
+    defs
+    filter#ea(x='0' y='0' width='120' height='120' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB')
+        feflood(flood-opacity='0' result='BackgroundImageFix')
+        fecolormatrix(in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha')
+        feoffset(dy='8')
+        fegaussianblur(stdDeviation='8')
+        fecolormatrix(values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0')
+        feblend(in2='BackgroundImageFix' result='effect1_dropShadow_128_2866')
+        fecolormatrix(in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha')
+        feoffset
+        fegaussianblur(stdDeviation='2')
+        fecolormatrix(values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0')
+        feblend(in2='effect1_dropShadow_128_2866' result='effect2_dropShadow_128_2866')
+        feblend(in='SourceGraphic' in2='effect2_dropShadow_128_2866' result='shape')
   svg#insta(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg')
     circle(cx='20' cy='20' r='20')
     g(clip-path='url(#fa)' fill='currentColor')
@@ -94,11 +113,28 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                 .header__left
                     a.header__logo(href="#") 
                         img(src="./img/logo.svg", alt="Логотип DePO")
-                    nav.header__nav.nav
-                        ul.nav__list.list-reset 
-                            for navItem of navItems 
-                                li.nav__item.descr 
-                                    a.nav__link(href=navItem.id)= navItem.title
+                    .header__overlay.overlay
+                      .header__menu.menu
+                        .header__burger.menu__burger.burger
+                          span.burger__line 
+                          span.burger__line 
+                          span.burger__line 
+                        nav.header__nav.nav
+                            ul.nav__list.list-reset 
+                                for navItem of navItems 
+                                    li.nav__item.descr 
+                                        a.nav__link(href=navItem.id)= navItem.title
+                        .menu__lang 
+                          p.menu__lang-title Выберите язык
+                          ul.menu__lang-list.list-reset
+                              li.menu__lang-item.menu__lang-item--active
+                                svg.menu__lang-icon 
+                                  use(xlink:href='#ru')
+                                span.menu__lang-value Русский
+                              li.menu__lang-item
+                                svg.menu__lang-icon 
+                                  use(xlink:href='#ua')
+                                span.menu__lang-value English
                 .header__right 
                     .header__lang.lang
                         .lang__selected
@@ -109,23 +145,23 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                               use(xlink:href='#Caret_Down')
                         .lang__options.lang-options
                           ul.lang-options__list.list-reset
-                            li.lang-options__item
+                            li.lang-options__item.lang-options__item--active
                               svg.lang-options__icon 
                                 use(xlink:href='#ru')
                               span.lang-options__value Русский
-                            li.lang-options__item.lang-options__item--active
+                            li.lang-options__item
                               svg.lang-options__icon 
                                 use(xlink:href='#ua')
                               span.lang-options__value English
                     button.header__btn.btn.btn-reset Launch app
-                    .header__burger.burger
+                    .header__burger.burger-common.burger
                       span.burger__line 
                       span.burger__line 
                       span.burger__line 
         main.main 
             section.hero 
                 - var socialLinks = [{link: '#', iconKey: '#fb'}, {link: '#', iconKey: '#tw'}, {link: '#', iconKey: '#insta'}]
-                  .hero__container
+                .hero__container
                     .hero__content
                         h1.hero__title Обменивай крипту и&nbsp;фиат без ограничений
                         button.hero__btn.btn.btn-reset Launch app
@@ -146,13 +182,23 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                         a.social__link(href=socialLink.link) 
                                             svg.social__icon 
                                                 use(xlink:href=socialLink.iconKey)
+                .hero__overlay.overlay
+                    .hero__popup.hero-popup.popup
+                        button.hero-popup__closebtn.popup__closebtn.popup-closebtn.btn-reset
+                            .popup-closebtn__wrapper
+                                span.popup-closebtn__line
+                                span.popup-closebtn__line
+                        h3.hero-popup__title.popup__title Заголовок попапа
+                        p.hero-popup__descr.popup__descr Широкий спектр услуг по&nbsp;торговле и&nbsp;управлению цифровыми активами для удовлетворения разнообразных торговых потребностей.
+                        button.hero-popup__btn.popup__btn.btn.btn-reset Button
+
             section.about#about.section-offset.section-divider
                 .container.about__container 
                     .about__content 
                         h2.about__title.title Ведущая платформа для торговли цифровыми активами
                         p.about__descr Широкий спектр услуг по&nbsp;торговле и&nbsp;управлению цифровыми активами для удовлетворения разнообразных торговых потребностей. Всесторонняя защита пользовательских активов с&nbsp;нашим автономным хранилищем, многофакторным шифрованием и&nbsp;круглосуточным мониторингом безопасности.
             section.stages#stages.section-offset.section-divider 
-                - var stages = [{class: 'stages-item__number-1', imgURL: '../img/step-1.jpg', number: 'Шаг 1', title: 'Создай или найди сделку', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-2', imgURL: '../img/step-2.jpg', number: 'Шаг 2', title: 'Безопасно переведи средства', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-3', imgURL: '../img/step-3.jpg', number: 'Шаг 3', title: 'Заверши обмен', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'},]
+                - var stages = [{class: 'stages-item__number-1', imgURL: '../img/step-1.jpg', imgURL2x: '../img/step-1_2x.jpg', number: 'Шаг 1', title: 'Создай или найди сделку', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-2', imgURL: '../img/step-2.jpg', imgURL2x: '../img/step-2_2x.jpg', number: 'Шаг 2', title: 'Безопасно переведи средства', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-3', imgURL: '../img/step-3.jpg', imgURL2x: '../img/step-3_2x.jpg', number: 'Шаг 3', title: 'Заверши обмен', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'},]
                 .container.stages__container 
                     .stages__top 
                         h2.stages__title.title Совершите обмен за&nbsp;3&nbsp;шага
@@ -161,7 +207,10 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                         ul.stages__list.list-reset
                             for stage of stages
                                 li.stages__item.stages-item
-                                    img.stages-item__image(src=stage.imgURL, alt="")
+                                    picture.gallery__img-wrapper
+                                      source(srcset=stage.imgURL media='(max-width: 320px)')
+                                      source(srcset=stage.imgURL2x media='(max-width: 576px)')
+                                      img.stages-item__image(src=stage.imgURL alt='Вторая картина')
                                     span.stages-item__number.descr(class=stage.class)= stage.number 
                                     h3.stages-item__title= stage.title
                                     p.stages-item__descr.descr= stage.descr
@@ -182,6 +231,54 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                       .geo__btns 
                           button.geo__btn.geo__btn-launch.btn.btn-reset Launch app
                           button.geo__btn.geo__btn-connect.btn.btn-reset Подключить мою страну
+                .geo__overlay.overlay.overlay--active
+                    .geo__popup.geo__popup-1.geo-popup.popup
+                        button.geo-popup__closebtn.popup__closebtn.popup-closebtn.btn-reset
+                            .popup-closebtn__wrapper
+                                span.popup-closebtn__line
+                                span.popup-closebtn__line
+                        h3.geo-popup__title.popup__title Подключить мою страну
+                        form.geo-popup__form.popup__form.form(action="") 
+                            p.form__label Выберите страну
+                            select.form__select(placeholder='Выберите страну')
+                                option.form__option(value="value1") Выберите страну
+                                option.form__option(value="value2") Армения
+                                option.form__option(value="value3") Босния и Герцеговина
+                                option.form__option(value="value4") Израиль
+                                option.form__option(value="value5") Сьерра-Леоне
+                            p.form__label Имя
+                            input.form__input(type='text' placeholder='Напишите свое имя')
+                            p.form__label Email
+                            input.form__input(type='email' placeholder='Напишите свой email')
+                            button.geo-popup__btn.popup__btn.btn.btn-reset Отправить заявку
+                    
+                    .geo__popup.geo__popup-2.geo-popup.popup
+                        button.geo-popup__closebtn.popup__closebtn.popup-closebtn.btn-reset
+                            .popup-closebtn__wrapper
+                                span.popup-closebtn__line
+                                span.popup-closebtn__line
+                        svg.geo-popup__icon(width='120' height='120' viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg')
+                            g(filter='url(#filter0_dd_128_2866)')
+                                rect(x='16' y='8' width='88' height='88' rx='44' fill='white')
+                            path(d='M60 67C68.2843 67 75 60.2843 75 52C75 43.7157 68.2843 37 60 37C51.7157 37 45 43.7157 45 52C45 60.2843 51.7157 67 60 67Z' stroke='#6FD6BD' stroke-width='3.33333' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round')
+                            path(d='M65 48.6667L58.3333 55.3334L55 52.0001' stroke='#6FD6BD' stroke-width='3.33333' stroke-linecap='round' stroke-linejoin='round')
+                            defs
+                                filter#filter0_dd_128_2866(x='0' y='0' width='120' height='120' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB')
+                                feflood(flood-opacity='0' result='BackgroundImageFix')
+                                fecolormatrix(in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha')
+                                feoffset(dy='8')
+                                fegaussianblur(stdDeviation='8')
+                                fecolormatrix(type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0')
+                                feblend(mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_128_2866')
+                                fecolormatrix(in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha')
+                                feoffset
+                                fegaussianblur(stdDeviation='2')
+                                fecolormatrix(type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0')
+                                feblend(mode='normal' in2='effect1_dropShadow_128_2866' result='effect2_dropShadow_128_2866')
+                                feblend(mode='normal' in='SourceGraphic' in2='effect2_dropShadow_128_2866' result='shape')
+                        h3.geo-popup__title.popup__title Заявка отправлена
+                        p.geo-popup__descr.popup__descr Мы&nbsp;отправим уведомление, когда обменные операции станут доступны в&nbsp;вашей стране
+                        button.geo-popup__btn.popup__btn.btn.btn-reset Понятно
             
             section.faq#faq.section-offset 
                 - var accordionItems = [{question: 'How does staking work?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'Which Proof of Stake asset(s) earn staking rewards?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'Who is eligible to stake on DEPO?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'How does ETH staking work?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'What are the risks associated with staking?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'How do I earn DeFi yield on DEPO?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}, {question: 'What’s the difference between staking and DeFi yield?', answer: 'Staking is a method of verifying and securing transactions on proof of stake blockchains. It’s faster and more energy efficient than other methods such as proof of work. Plus, participants get rewarded for helping in the process. In exchange for delegating  your crypto, you get rewarded with more assets from the network. To generate staking rewards on a Proof of Stake blockchain, a node has to designate a certain amount of tokens on the network as a stake (similar to a security deposit). The chance of that node being chosen to validate the next block is typically proportional to the number of tokens being staked. If the node successfully validates a block, it is awarded the staking reward, similar to a miner being rewarded in Proof of Work chains. Validators lose part of their stake if they approve a fraudulent transaction — this incentivizes them to only approve valid transactions.'}]

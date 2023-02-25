@@ -154,6 +154,117 @@ img
     clip rect(0 0 0 0)
     overflow hidden
 
+.stop-scroll {
+    overflow-y: hidden;
+    overscroll-behavior: contain;
+}
+
+.overlay
+    position absolute
+    display flex
+    justify-content: center
+    align-items: center
+    top 0
+    left 0
+    z-index 10
+    width 100%
+    height 100vh
+    background-color: rgba(0 0 0 0.8)
+    visibility hidden
+    tr()
+    &--active
+        visibility visible
+
+.popup
+    position relative
+    width 600px
+    padding 80px 64px
+    background-color $white
+    border-radius: 16px
+    visibility hidden
+    transform: translateX(250%)
+    tr()
+    &--active
+        visibility visible
+        transform: translateX(0)
+    &__title
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 40px;
+        color $black
+        margin 0
+        margin-bottom 16px
+    &__descr
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+        color $gray
+        margin 0
+        margin-bottom 32px
+
+.popup-closebtn
+    position absolute
+    top 24px
+    right 24px
+    width 24px
+    height 24px
+    z-index 20
+    &__wrapper
+        position relative
+    &__line
+        position absolute
+        top 45%
+        left 25%
+        width 15px
+        height 2px
+        background-color $gray
+        border-radius 100%
+        &:first-child
+            transform rotate(45deg)
+        &:last-child
+            transform rotate(-45deg)
+    &:hover .popup-closebtn__line
+        background-color $blue
+    &:focus .popup-closebtn__line
+        background-color $blue
+    &:active .popup-closebtn__line
+        background-color $darkest-blue
+
+.form
+    &__label
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color $gray
+        margin 0
+        margin-bottom 10px 
+    &__input
+    &__select
+        width 100%
+        padding 12px 24px
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        margin-bottom 32px
+        &:placeholder
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 32px;
+            color $gray
+    &__option
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+        color $gray
+
+.geo__popup
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.popup__descr.geo-popup__descr
+    text-align: center
+
+
 // Header
 .header
     &__container
@@ -214,6 +325,8 @@ img
         stroke $gray
         transition: stroke .3s ease-in-out
         tr()
+        &--active
+            transform rotate(180deg)
     &__arrow--active
         transform rotate(180deg)
 
@@ -224,7 +337,12 @@ img
     background-color: $white
     border-radius 16px 
     padding 8px
+    transform translateY(-200%)
     visibility hidden
+    tr()
+    &--active
+        transform translateY(0)
+        visibility: visible
     &__item
         display flex
         align-items: center
@@ -232,6 +350,7 @@ img
         padding 8px 16px
         &:not(:last-child)
             margin-bottom 8px
+        &:hover
         &--active
             color $black
             background-color $blue-bg
@@ -245,11 +364,16 @@ img
         // &:hover
         //     color $blue
 
+.menu
+    &__lang
+        display none
+
 .burger
     display none
     position relative
     width 32px
     height 32px
+    cursor pointer
     &__line
         position absolute
         width 24px

@@ -1,11 +1,49 @@
 @import ('main.styl')
 
-@media (max-width 992px)
+@media (min-width 1729px)
     .container
-        padding 0 24px
+        padding 0 200px
+
+    .header
+        &__container
+            padding 20px 60px
+
+    .hero
+        &__container
+            background-position: right 269px top 75px;
+            padding 24px 60px 20px
+        
+    .stages
+        &__list
+            justify-content: space-between
+        &__item
+            max-width 24%
     
-    .section-offset
-        padding 80px 0
+    .app
+        &__bg
+            height: 132%;
+            top: -166px;
+            right: 271px;
+
+@media (min-width 1441px) and (max-width 1728px)
+    .container
+        padding 0 140px
+
+    .header
+        &__container
+            padding 20px 40px
+    
+    .hero
+        &__container
+            padding 24px 40px 20px
+
+@media (max-width 1280px)
+    .container
+        padding 0 80px
+
+    .title
+        font-size: 40px;
+        line-height: 48px;
 
     .header
         &__left
@@ -16,15 +54,131 @@
             margin-right 0
         &__btn
             margin-right 24px  
-        &__nav
-            display none
         &__burger
             display block
+
+    .menu
+        position absolute
+        top 0
+        right 0
+        z-index 10
+        width 280px
+        height 100vh
+        background-color $white
+        padding 28px 24px 28px 32px
+        transform translateX(120%)
+        visibility hidden
+        tr()
+        &--active
+            visibility visible
+            transform: translateX(0)
+        &__burger
+            margin-left auto
+            margin-bottom 24px
+        &__lang
+            display block
+        &__lang-title
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+            color $gray
+            margin 0
+            margin-bottom 24px
+        &__lang-item
+            display flex
+            align-items center
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color $gray
+            &--active
+                color $black
+            &:not(:last-child)
+                margin-bottom 20px
+        &__lang-icon
+            width 20px
+            height 20px
+            margin-right 8px
+
+    .nav
+        &__list
+            flex-direction: column
+            width 100%
+            padding-bottom 24px
+            margin-bottom 24px
+            border-bottom 1px solid $light-gray
+        &__item
+            &:not(:last-child)
+                margin-right 0
+                margin-bottom 24px
+
+    .hero
+        &__container
+                background-size: 450px 486px;
+                background-position: right 90px top 105px;
+        &__content
+                padding-top: 140px;
+                margin-bottom: 140px;
+        &__title
+            font-size: 54px;
+            line-height: 60px;
+    
+    .about
+        &__title
+            width: 61%;
+            margin-right: 70px;
+        &__descr
+            width: 57%;
+
+    .stages
+        &__title
+            width 38%
+
+    .geo
+        &__title
+            max-width 41%
+
+    .countries
+        max-width 17%
+
+    .faq
+        padding-bottom 140px
+        &__left
+            width 26%
+        &__descr
+            max-width 82%
+        &__right
+            width 74%
+
+    .accordion
+        &__title
+            font-size: 22px;
+            line-height: 28px;
+
+    .app
+        &__content
+            width 47%
+        &__bg
+            top -88px
+            right 100px
+
+    .footer
+        &__left
+            margin-right 250px
+        &__center
+            margin-right 30px
+
+@media (max-width 992px)
+    .container
+        padding 0 24px
+    
+    .section-offset
+        padding 80px 0
 
     .hero
         &__container
             background-image: url(../img/hero-bg-m.png);
-            background-position: right 138px top 32px;
+            background-position: center top 32px;
             background-size: 452px 472px;
         &__content
             display flex
@@ -179,6 +333,15 @@
             padding 8px 12px
             margin-right 16px
     
+    .menu
+        width 192px
+        &__lang-item
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            &:not(:last-child)
+                margin-bottom 24px
+    
     .burger
         width 24px
         height 24px
@@ -190,7 +353,7 @@
         &__container
             background-image: url(../img/hero-bg-s.png);
             background-position: center bottom 32px;
-            background-size: 100% 61%;
+            background-size: auto 534px
             padding-bottom 60px
         &__content
             padding-top 8px
@@ -265,6 +428,18 @@
             top 73px
             right 16px
             background-size 90% 30%
+
+    .countries
+        display flex
+        position absolute
+        left -10px
+        min-width 106%
+        overflow-x scroll
+        padding 8px 26px
+        &::-webkit-scrollbar
+            display: none
+        &__item
+            max-width 21%
 
     .faq
         &__left
