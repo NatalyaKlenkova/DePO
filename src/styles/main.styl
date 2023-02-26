@@ -77,6 +77,7 @@ body
     font-family 'TT Firs Neue', sans-serif
     font-weight 500
     color $black
+    overflow-x hidden
 
 // Global
 
@@ -124,7 +125,7 @@ body
     background-color $blue
     padding 12px 24px
     border-radius 8px
-    tr()
+    transition background-color 0.3s ease-in-out, color 0.3s ease-in-out
     &:hover
         background-color: $darker-blue
     &:active
@@ -160,7 +161,7 @@ img
 }
 
 .overlay
-    position absolute
+    position fixed
     display flex
     justify-content: center
     align-items: center
@@ -175,10 +176,24 @@ img
     &--active
         visibility visible
 
+.geo__overlay
+    width: 300%
+    flex-wrap: nowrap
+
+.geo-popup
+    transform translateX(0) !important
+
+.geo-popup-container
+    display flex
+    justify-content: center
+    align-items: center
+    width 100vw
+    height 100vh
+
 .popup
     position relative
     width 600px
-    padding 80px 64px
+    padding 64px 80px
     background-color $white
     border-radius: 16px
     visibility hidden
@@ -201,6 +216,21 @@ img
         color $gray
         margin 0
         margin-bottom 32px
+
+.geo-popup
+    display: flex
+    flex-direction: column
+    align-items: center
+    &__icon
+        border-radius 200px
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 8px 16px rgba(0, 0, 0, 0.08);
+        margin-bottom 32px
+
+.geo__popup-1 .geo-popup__title
+    width 100%
+
+.popup__descr.geo-popup__descr
+    text-align: center
 
 .popup-closebtn
     position absolute
@@ -241,37 +271,78 @@ img
     &__input
     &__select
         width 100%
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+        color $gray
         padding 12px 24px
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 8px;
         margin-bottom 32px
-        &:placeholder
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 32px;
-            color $gray
     &__option
         font-weight: 500;
         font-size: 18px;
         line-height: 32px;
         color $gray
 
-.geo__popup
-    display: flex
-    flex-direction: column
-    align-items: center
+.choices
+    margin-bottom 32px
+    &__inner
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+        color $gray
+        background-color transparent
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding 0
+    &[data-type*=select-one] .choices__inner
+        padding-bottom 0
+    &__list
+        &--single
+            padding 12px 24px
+        &--dropdown
+        &[aria-expanded]
+            border-bottom-left-radius 8px
+            border-bottom-right-radius 8px
+    &__placeholder
+        opacity 1
 
-.popup__descr.geo-popup__descr
-    text-align: center
+.choices__list--dropdown .choices__item--selectable::after, .choices__list[aria-expanded] .choices__item--selectable::after 
+    display none
+
+.choices[data-type*=select-one]::after
+    height 13px
+    width 13px
+    border none
+    top 32%
+    right 28px
+    margin-top 0
+    border-right 1px solid $gray
+    border-bottom 1px solid $gray
+    transform rotate(45deg)
+    transition transform 0.3s ease-in-out
+
+.choices[data-type*=select-one].is-open::after
+    top: 55%;
+    border-color $gray
+    transform: rotate(225deg);
+    transform-origin: center;
+
+.is-open .choices__inner
+    border-top-left-radius 8px
+    border-top-right-radius 8px
 
 
 // Header
 .header
     &__container
+        position relative
         display flex
         justify-content space-between
         align-items center
         padding 20px 24px
+        
     &__left,
     &__right
         display flex
@@ -299,8 +370,7 @@ img
         &:hover
             color $blue
             border-color $blue
-        tr()
-        
+        tr()      
         
 .lang
     position relative
@@ -318,6 +388,7 @@ img
         height 20px
         margin-right 8px
     &__value
+        width 63px
         tr()
     &__arrow
         width 24px
@@ -374,6 +445,13 @@ img
     width 32px
     height 32px
     cursor pointer
+    &:hover .burger__line
+        background-color $blue
+    &:focus .burger__line
+        outline none
+        background-color $blue
+    &:active .burger__line
+        background-color $darkest-blue
     &__line
         position absolute
         width 24px
@@ -504,7 +582,7 @@ img
 
 .stages-item
     &__image
-        margin-bottom 24px
+        margin-bottom 19px
     &__number
         color $black
         background-color $light-blue
@@ -529,13 +607,10 @@ img
     &__bg
         position absolute
         z-index -1
-        width 100%
+        width 77%
         height 100%
-        top 0
-        right 107px
-        background-image: url('../img/map_ru.png')
-        background-repeat no-repeat
-        background-position: right center
+        top 120px
+        right 7px
     &__title
         max-width 37%
         margin-bottom 32px
@@ -551,6 +626,9 @@ img
         &:active
             color $black
             background-color #bfd8fb
+
+
+
 
 .countries
     max-width 13%
@@ -663,7 +741,6 @@ img
         position absolute
         width 100%
         height 115%
-        top -78px
         right 214px
         bottom 0
         background-image url(../img/app-bg.png)
