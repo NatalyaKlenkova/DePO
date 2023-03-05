@@ -7,10 +7,6 @@ html(lang="en")
         link(rel="stylesheet", href="./css/choices.min.css")
         link(rel="stylesheet", href="./css/normalize.css")
         link(rel="stylesheet", href="./css/main.css")
-        script(defer src='https://code.jquery.com/jquery-3.6.0.js')
-        script(defer src='https://code.jquery.com/ui/1.13.2/jquery-ui.js')
-        script(defer src='./js/choices.min.js')
-        script(defer src='./js/app.js')
         title DePO
     body
         // ?xml version="1.0" encoding="utf-8"?
@@ -628,5 +624,10 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                             li.social__item 
                                 a.social__link(href=socialLink.link) 
                                     svg.footer-social__icon.social__icon 
-                                        use(xlink:href=socialLink.iconKey)      
+                                        use(xlink:href=socialLink.iconKey)   
+
+        script(src='https://code.jquery.com/jquery-3.6.0.js')
+        script(src='https://code.jquery.com/ui/1.13.2/jquery-ui.js')
+        script(src='./js/choices.min.js')
+        script(src='./js/app.js')   
                                                     
