@@ -168,6 +168,38 @@ function selectLanguage() {
 }
 selectLanguage();
 
+// Hero parallax
+const heroWrapper = document.querySelector('.parallax__inner');
+const heroLayers = document.querySelectorAll('.parallax__layer');
+
+const handleParallax = (evt) => {
+ //размер области просмотра
+  const parallaxLeftOffset = heroWrapper.getBoundingClientRect().left;
+  const parallaxTopOffset = heroWrapper.getBoundingClientRect().top;
+
+  // координаты центра экрана
+  const coordX = evt.clientX - parallaxLeftOffset - 0.5 * heroWrapper.offsetWidth;
+  const coordY = evt.clientY - parallaxTopOffset - 0.5 *  heroWrapper.offsetHeight;
+    
+  heroLayers.forEach((heroLayer)=>{
+    const layerSpeed = heroLayer.dataset.speed;
+    const x = - (coordX * layerSpeed).toFixed(2);
+    const y = - (coordY * layerSpeed).toFixed(2);
+    heroLayer.setAttribute('style', `transform: translate(${x}px, ${y}px);`)
+  });
+};
+
+const reset = () => {
+  heroLayers.forEach((heroLayer)=>{
+    heroLayer.removeAttribute('style');
+  });
+}
+ 
+heroWrapper.addEventListener('mousemove', handleParallax);
+heroWrapper.addEventListener('mouseout', reset);
+
+
+
 // Hero scroll или "Листайте вниз"
 const heroScroll = document.querySelector('.hero__scroll');
 

@@ -472,11 +472,8 @@ img
 // Hero
 .hero
     background-color $blue-bg
+    position relative
     &__container
-        background-image url('../img/hero-bg.png')
-        background-repeat no-repeat
-        background-position right 108px top 75px
-        background-size 600px 626px
         padding 24px 24px 20px
     &__content
         padding-top 162px
@@ -506,6 +503,47 @@ img
     &__bottom
         display flex
         justify-content space-between
+
+.parallax
+    position absolute
+    width 600px
+    height 626px
+    top 75px
+    right 108px
+    &__inner
+        position relative
+        width 100%
+        height 100%
+    &__bg
+        background-image url('../img/widget.png')
+        width 100%
+        height 100%
+        background-size contain
+        background-repeat no-repeat
+    &__bsd
+        width 8%
+        height 8%
+        top 0
+        left 155px
+        background-image url('../img/bsd.png')
+    &__usd
+        width 24%
+        height 24%
+        top 27px
+        left 26px
+        background-image url('../img/usd.png')
+    &__ethereum
+        width 20%
+        height 21%
+        right 18px
+        bottom 7px
+        background-image url('../img/ethereum.png')
+    &__layer
+        position absolute
+        background-repeat no-repeat
+        background-size contain
+        transition transform 0.3s linear
+        
 
 .hero-scroll
     display flex

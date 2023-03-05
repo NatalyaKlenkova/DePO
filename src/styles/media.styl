@@ -120,15 +120,18 @@
             padding-bottom 10px
 
     .hero
-        &__container
-                background-size: 450px 486px;
-                background-position: right 90px top 105px;
         &__content
                 padding-top: 140px;
                 margin-bottom: 140px;
         &__title
             font-size: 54px;
             line-height: 60px;
+
+    .parallax
+        width 450px
+        height 486px
+        top 105px
+        right 90px
     
     .about
         &__title
@@ -188,10 +191,6 @@
         padding 80px 0
 
     .hero
-        &__container
-            background-image: url(../img/hero-bg-m.png);
-            background-position: center top 32px;
-            background-size: 452px 472px;
         &__content
             display flex
             flex-direction: column
@@ -205,6 +204,22 @@
             font-weight: 500;
             font-size: 48px;
             line-height: 56px;
+
+    .parallax
+        width 452px
+        height 472px
+        top 32px
+        right 19%
+        &__bg
+            background-image url('../img/widget-m.png')
+        &__bsd
+            left: 116px;
+        &__usd
+            top 21px
+            left 21px
+        &__ethereum
+            right 14px
+            bottom 5px
     
     .about
         padding-top 81px
@@ -431,9 +446,9 @@
 
     .hero
         &__container
-            background-image: url(../img/hero-bg-s.png);
-            background-position: center bottom 32px;
-            background-size: auto 534px
+            // background-image: url(../img/hero-bg-s.png);
+            // background-position: center bottom 32px;
+            // background-size: auto 534px
             padding-bottom 60px
         &__content
             padding-top 8px
@@ -452,6 +467,29 @@
             height 21px
         &__bottom
             display none
+
+    .parallax
+        width 102%
+        height 534px
+        top 317px
+        right 0
+        &__bg
+            background-image: url(../img/widget-s.png);
+            background-position: center center
+            background-size: auto 534px
+        &__bsd
+            width 11%
+            height 11%
+            top -9px
+            left 103px
+        &__usd
+            top 2px
+            left 15px
+        &__ethereum
+            width 22%
+            right 44px
+            bottom -29px
+
     
     .about
         &__title

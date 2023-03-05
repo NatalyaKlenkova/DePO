@@ -164,6 +164,12 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
             section.hero 
                 - var socialLinks = [{link: '#', iconKey: '#fb'}, {link: '#', iconKey: '#tw'}, {link: '#', iconKey: '#insta'}]
                 .hero__container
+                    .hero__parallax.parallax 
+                        .parallax__inner
+                            .parallax__bg 
+                            .parallax__bsd.parallax__layer(data-speed="0.1")
+                            .parallax__usd.parallax__layer(data-speed="0.2")
+                            .parallax__ethereum.parallax__layer(data-speed="0.05")
                     .hero__content
                         h1.hero__title Обменивай крипту и&nbsp;фиат без ограничений
                         button.hero__btn.btn.btn-reset Launch app
