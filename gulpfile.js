@@ -12,7 +12,7 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify-es').default;
 const notify = require('gulp-notify')
 const browserSync = require('browser-sync').create();
-// const ghPages = require('gulp-gh-pages');
+const ghPages = require('gulp-gh-pages');
 
 gulp.task('style', function () {
     return src('src/styles/**/*.styl')
@@ -106,7 +106,7 @@ gulp.task('tree', function(){
   
   gulp.task('dev', gulp.series('tree', 'build', gulp.parallel('watch', 'serve')));
 
-//   gulp.task('deploy', function () {
-//     return gulp.src('./dist/**/*')
-//         .pipe(ghPages())
-//   })
+  gulp.task('deploy', function () {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages())
+  })

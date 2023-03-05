@@ -74,13 +74,30 @@ for (let anchor of anchors) {
 }
 
 // Language selecting
+const languages = [
+  {
+    name: 'ru',
+    value: 'Русский',
+    svgKey: '#ru'
+  },
+  {
+    name: 'ua',
+    value: 'English',
+    svgKey: '#ua'
+  }
+]
+
+// Текущий язык в верхней панели
 const currentLanguage = document.querySelector('.header__lang');
 const currentLanguageValue = document.querySelector('.lang__value');
-const currentLanguageIcon = document.querySelector('.lang__icon');
+const currentLanguageIcon = document.querySelector('.lang__icon').firstElementChild;
 const arrow = document.querySelector('.lang__arrow');
-const languageForm = document.querySelector('.lang-options');
-const languageItems = document.querySelectorAll('.lang-options__item');
 
+// Язык в форме выбора
+const languageForm = document.querySelector('.lang-options');
+const languageFormItems = document.querySelectorAll('.lang-options__item');
+
+// Язык в бургер-меню
 const burgerLanguageItems = document.querySelectorAll('.menu__lang-item');
 
 function selectLanguage() {
@@ -91,33 +108,48 @@ function selectLanguage() {
     arrow.classList.toggle('lang__arrow--active');
   }
 
-  // Функция, которая меняет язык в верхней панели на выбранный
+  // Функция, которая меняет язык в верхней панели, в форме и в бургер-меню на выбранный
   function changeLanguage(event) {
-    let newLanguageValue = event.target.textContent;
-      currentLanguageValue.textContent = newLanguageValue;
+    // Получаем data-lang элемента, на котором произошел клик
+    let lang = event.target.dataset.lang;
 
+    // Меняем выбранный язык в верхней панели
+    for (let language of languages) {
+      if (language.name === lang) {
+        currentLanguageValue.textContent = language.value;
+        currentLanguageIcon.setAttribute('xlink:href', language.svgKey);
+      }
+    }
 
-      // let newLanguage = event.target.parentElement.querySelector(`[xlink:href]`);
-      // // let newLanguageIcon = newLanguage
-      // console.log(newLanguage)
-      // currentLanguageIcon.xlinkHref = '#ua';
+    // Меняем активный язык в форме
+    document.querySelector('.lang-options__item--active').classList.remove('lang-options__item--active');
+
+    for (let languageFormItem of languageFormItems) {
+      if (languageFormItem.querySelector('.lang-options__value').dataset.lang === lang) {
+        languageFormItem.classList.add('lang-options__item--active');
+      }
+    }
+
+    // Меняем активный язык в бургер меню
+    document.querySelector('.menu__lang-item--active').classList.remove('menu__lang-item--active');
+
+    for (let burgerLanguageItem of burgerLanguageItems) {
+      if (burgerLanguageItem.querySelector('.menu__lang-value').dataset.lang === lang) {
+        burgerLanguageItem.classList.add('menu__lang-item--active');
+      }
+    }
   }
 
-  // При клике на какой-либо из вариантов языка меняется иконка и название языка в панели выше
-  languageItems.forEach(languageItem => {
-    languageItem.onclick = function (event) {
-      document.querySelector('.lang-options__item--active').classList.remove('lang-options__item--active');
-      languageItem.classList.add('lang-options__item--active');
-
+  // При клике на какой-либо из вариантов языка в форме вызывается функция смены языка
+  languageFormItems.forEach(languageFormItem => {
+    languageFormItem.onclick = function (event) {
       changeLanguage(event);
-
-      languageForm.classList.remove('lang-options--active');
     }
   })
 
   // При клике на свободную область, форма выбора языка скрывается
   document.addEventListener('click', (e) => {
-    const withinBoundaries1 = e.composedPath().includes(languageItems);
+    const withinBoundaries1 = e.composedPath().includes(languageFormItems);
     const withinBoundaries2 = e.composedPath().includes(currentLanguage);
 
     if (!withinBoundaries1 && !withinBoundaries2) {
@@ -126,45 +158,77 @@ function selectLanguage() {
     }
   })
 
-  // Панель выбора языков в бургер меню
+  // Панель выбора языка в бургер меню. При клике на элемент вызывается фнкция смены языка
   burgerLanguageItems.forEach(burgerLanguageItem => {
     burgerLanguageItem.onclick = function (event) {
-      document.querySelector('.menu__lang-item--active').classList.remove('menu__lang-item--active');
-      burgerLanguageItem.classList.add('menu__lang-item--active');
-
       changeLanguage(event);
-
       disableBurger();
     }
   })
 }
 selectLanguage();
 
+// Hero scroll или "Листайте вниз"
+const heroScroll = document.querySelector('.hero__scroll');
+
+heroScroll.onclick = function () {
+  var about = document.getElementById('about');
+  about.scrollIntoView({behavior: 'smooth'}, true);
+}
+
 // Popups
-// Hero popup
-const heroBtn = document.querySelector('.hero__btn');
+/// Launch App Popup
 const heroPopup = document.querySelector('.hero__popup');
 const heroOverlay = document.querySelector('.hero__overlay');
 const heroPopupCloseBtn = document.querySelector('.hero-popup__closebtn');
 
-function disableHeroOverlay() {
-  heroOverlay.classList.remove('overlay--active');
-  heroPopup.classList.remove('popup--active');
-  bodyScrollControls.enable();
-}
-
-heroBtn.onclick = function () {
+function enableLaunchPopup() {
   heroOverlay.classList.add('overlay--active');
   heroPopup.classList.add('popup--active');
   bodyScrollControls.disable();
 }
 
+function disableLaunchPopup() {
+  heroOverlay.classList.remove('overlay--active');
+  heroPopup.classList.remove('popup--active');
+  bodyScrollControls.enable();
+}
+
+/// Header popup
+const headerBtn = document.querySelector('.header__btn');
+
+headerBtn.onclick = function () {
+  enableLaunchPopup();
+}
+
+/// Hero popup
+const heroBtn = document.querySelector('.hero__btn');
+
+heroBtn.onclick = function () {
+  enableLaunchPopup();
+}
+
+/// Geo popup
+const geoBtn = document.querySelector('.geo__btn');
+
+geoBtn.onclick = function () {
+  enableLaunchPopup();
+}
+
+/// App popup
+const appBtn = document.querySelector('.app__btn');
+
+appBtn.onclick = function () {
+  enableLaunchPopup();
+}
+
+/// Disable launch app popup
 heroPopupCloseBtn.onclick = function () {
-  disableHeroOverlay();
+  disableLaunchPopup();
 }
 
 heroOverlay.onclick = function () {
-  disableHeroOverlay();
+  disableLaunchPopup();
 }
 
 // Custom select (geo popup form)

@@ -125,6 +125,7 @@ body
     background-color $blue
     padding 12px 24px
     border-radius 8px
+    cursor pointer
     transition background-color 0.3s ease-in-out, color 0.3s ease-in-out
     &:hover
         background-color: $darker-blue
@@ -239,6 +240,7 @@ img
     width 24px
     height 24px
     z-index 20
+    cursor pointer
     &__wrapper
         position relative
     &__line
@@ -377,7 +379,9 @@ img
     &__selected
         display flex
         align-items center
+        align-content: center
         margin-right 24px
+        cursor pointer
         &:hover
             & .lang__value
                 color $blue
@@ -419,6 +423,7 @@ img
         align-items: center
         color $gray
         padding 8px 16px
+        cursor pointer
         &:not(:last-child)
             margin-bottom 8px
         &:hover
@@ -505,6 +510,9 @@ img
 .hero-scroll
     display flex
     align-items center
+    cursor pointer
+    &:hover .hero-scroll__descr
+        color $blue
     &__icon 
         width 24px
         height 24px
@@ -627,9 +635,6 @@ img
             color $black
             background-color #bfd8fb
 
-
-
-
 .countries
     max-width 14%
     padding 8px
@@ -679,6 +684,7 @@ img
         justify-content: space-between
         align-items: center
         padding 24px
+        cursor pointer
         tr()
         &:hover
             background-color: $blue-bg
@@ -727,7 +733,7 @@ img
     background-color $blue-bg
     padding 96px 0
     &__content
-        z-index 1
+        z-index 10
         width 45%
     &__title
     &__descr
@@ -739,6 +745,8 @@ img
         line-height: 32px;
     &__bg
         position absolute
+        z-index 0
+        pointer-events: none
         width 100%
         height 115%
         right 214px

@@ -113,7 +113,7 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
             - var navItems = [{title: 'О нас', id: '#about'}, {title: 'Как это работает', id: '#stages'}, {title: 'Где работаем', id: '#geo'}, {title: 'FAQ', id: '#faq'}, {title: 'Контакты', id: '#contacts'}]
             .header__container 
                 .header__left
-                    a.header__logo(href="#") 
+                    div.header__logo
                         img(src="./img/logo.svg", alt="Логотип DePO")
                     .header__overlay.overlay
                     .header__menu.menu
@@ -132,11 +132,11 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                 li.menu__lang-item.menu__lang-item--active
                                   svg.menu__lang-icon 
                                       use(xlink:href='#ru')
-                                  span.menu__lang-value Русский
+                                  span.menu__lang-value(data-lang= 'ru') Русский
                                 li.menu__lang-item
                                   svg.menu__lang-icon 
                                       use(xlink:href='#ua')
-                                  span.menu__lang-value English
+                                  span.menu__lang-value(data-lang= 'ua') English
                 .header__right 
                     .header__lang.lang
                         .lang__selected
@@ -150,11 +150,11 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                             li.lang-options__item.lang-options__item--active
                               svg.lang-options__icon 
                                 use(xlink:href='#ru')
-                              span.lang-options__value Русский
+                              span.lang-options__value(data-lang= 'ru') Русский
                             li.lang-options__item
                               svg.lang-options__icon 
                                 use(xlink:href='#ua')
-                              span.lang-options__value English
+                              span.lang-options__value(data-lang= 'ua') English
                     button.header__btn.btn.btn-reset Launch app
                     .header__burger.burger-common.burger
                       span.burger__line 
@@ -200,7 +200,7 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                         h2.about__title.title Ведущая платформа для торговли цифровыми активами
                         p.about__descr Широкий спектр услуг по&nbsp;торговле и&nbsp;управлению цифровыми активами для удовлетворения разнообразных торговых потребностей. Всесторонняя защита пользовательских активов с&nbsp;нашим автономным хранилищем, многофакторным шифрованием и&nbsp;круглосуточным мониторингом безопасности.
             section.stages#stages.section-offset.section-divider 
-                - var stages = [{class: 'stages-item__number-1', imgURL: '../img/step-1.jpg', imgURL2x: '../img/step-1_2x.jpg', number: 'Шаг 1', title: 'Создай или найди сделку', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-2', imgURL: '../img/step-2.jpg', imgURL2x: '../img/step-2_2x.jpg', number: 'Шаг 2', title: 'Безопасно переведи средства', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-3', imgURL: '../img/step-3.jpg', imgURL2x: '../img/step-3_2x.jpg', number: 'Шаг 3', title: 'Заверши обмен', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'},]
+                - var stages = [{class: 'stages-item__number-1', imgURL: './img/step-1.jpg', imgURL2x: './img/step-1_2x.jpg', number: 'Шаг 1', title: 'Создай или найди сделку', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-2', imgURL: './img/step-2.jpg', imgURL2x: './img/step-2_2x.jpg', number: 'Шаг 2', title: 'Безопасно переведи средства', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'}, {class: 'stages-item__number-3', imgURL: './img/step-3.jpg', imgURL2x: './img/step-3_2x.jpg', number: 'Шаг 3', title: 'Заверши обмен', descr: 'Широкий спектр услуг по торговле и управлению цифровыми активами для удовлетворения'},]
                 .container.stages__container 
                     .stages__top 
                         h2.stages__title.title Совершите обмен за&nbsp;3&nbsp;шага
@@ -212,7 +212,7 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                     picture.gallery__img-wrapper
                                       source(srcset=stage.imgURL media='(max-width: 320px)')
                                       source(srcset=stage.imgURL2x media='(max-width: 576px)')
-                                      img.stages-item__image(src=stage.imgURL alt='Вторая картина')
+                                      img.stages-item__image(src=stage.imgURL)
                                     span.stages-item__number.descr(class=stage.class)= stage.number 
                                     h3.stages-item__title= stage.title
                                     p.stages-item__descr.descr= stage.descr
@@ -599,11 +599,12 @@ svg(viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://w
                                                 p= accordionItem.answer
             section.app#app
                 .container.app__container 
+                    .app__bg
                     .app__content
                       h2.app__title.title Обменяйте средства за&nbsp;считанные минуты
                       p.app__descr.descr Широкий спектр услуг по&nbsp;торговле и&nbsp;управлению цифровыми активами для удовлетворения разнообразных торговых потребностей
                       button.app__btn.btn.btn-reset Launch app
-                    .app__bg
+                    
 
         footer.footer
             //- - var socialLinks = [{link: '#', iconKey: '#fb'}, {link: '#', iconKey: '#tw'}, {link: '#', iconKey: '#insta'}]
