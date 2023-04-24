@@ -10,12 +10,24 @@ const pug = require('gulp-pug');
 const stylus = require('gulp-stylus');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify-es').default;
-const notify = require('gulp-notify')
+const notify = require('gulp-notify');
+const sourcemaps = require('gulp-sourcemaps');
+const del = require('del');
 const browserSync = require('browser-sync').create();
 const ghPages = require('gulp-gh-pages');
 
+gulp.task('clean', function () {
+    return del(['dist'])
+})
+
+gulp.task('resources', function () {
+    return src('src/resources/**')
+        .pipe(dest('dist'))
+})
+
 gulp.task('style', function () {
     return src('src/styles/**/*.styl')
+        .pipe(sourcemaps.init())
         .pipe(stylus())
         .pipe(concat('main.css'))
         .pipe(autoPrefixer({
@@ -24,6 +36,7 @@ gulp.task('style', function () {
         .pipe(cleanCSS({
             level: 2
         }))
+        .pipe(sourcemaps.write())
         .pipe(dest('dist/css'))
 })
 
@@ -55,11 +68,13 @@ gulp.task('scripts', function () {
         'src/js/components/**/*.js',
         'src/js/main.js'
     ])
+    .pipe(sourcemaps.init())
     .pipe(babel({
         presets: ['@babel/env']
     }))
     .pipe(concat('app.js'))
     .pipe(uglify().on('error', notify.onError()))
+    .pipe(sourcemaps.write())
     .pipe(dest('dist/js'))
 })
 
@@ -81,6 +96,8 @@ gulp.task('watch', function(){
     gulp.watch('src/**/*.*', gulp.series('htmlCompile'));
     gulp.watch('src/img/svg/**/*.svg', gulp.series('svgSprites'));
     gulp.watch('src/js/**/*.js', gulp.series('scripts'));
+    gulp.watch('src/img/*.*', gulp.series('images'));
+    gulp.watch('src/resources/**', gulp.series('resources'));
   });
 
 gulp.task('serve', function () {
@@ -104,7 +121,7 @@ gulp.task('tree', function(){
       .pipe(gulp.dest('./dist/img'))
   })
   
-  gulp.task('dev', gulp.series('tree', 'build', gulp.parallel('watch', 'serve')));
+  gulp.task('dev', gulp.series('clean', 'tree', 'build', gulp.parallel('watch', 'serve')));
 
   gulp.task('deploy', function () {
     return gulp.src('./dist/**/*')
